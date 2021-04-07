@@ -37,7 +37,7 @@ type
   end;
     TF = class(TE)
     public
-    procedure show; override;
+    procedure show; virtual;
   end;
     TG = class(TF)
     public
