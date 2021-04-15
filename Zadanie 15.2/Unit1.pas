@@ -13,9 +13,8 @@ type
   end;
 
   T2 = class(T1)
-    procedure Test(S: string);  reintroduce;  overload;
-    procedure Test(I: integer);     override;
-
+    procedure Test(S: string);  overload;
+    procedure Test(I: integer); override;
   end;
 
   T3 = class(T2)
