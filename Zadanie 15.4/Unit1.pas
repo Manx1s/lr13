@@ -12,16 +12,22 @@ type
     Button1: TButton;
     Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
+
   private
+
   FA:word;
   FB:integer;
+  FC:string;
     procedure SetA(const Value: word);
     function GetB: integer;
-    { Private declarations }
+    function GetC:string;
+    procedure SetC(Value: string);
+
   public
+
   property B:integer read GetB write FB;
   property A:word read FA write SetA;
-    { Public declarations }
+  property C:string read FC write SetC;
   end;
 
 var
@@ -39,6 +45,8 @@ A:=100;
 Memo1.lines.add(Inttostr(A));
 B:=300;
 Memo1.Lines.Add(inttostr(B+B));
+C:='Help me!';
+Memo1.Lines.Add(C+C);
 end;
 
 function TForm1.GetB: integer;
@@ -46,9 +54,20 @@ begin
   Result := FB+5;
 end;
 
+function TForm1.GetC: string;
+begin
+ FC:=FC+'Pomogi!';
+ result:=FC;
+end;
+
 procedure TForm1.SetA(const Value: word);
 begin
   FA := Value+5000;
+end;
+
+procedure TForm1.SetC(Value: string);
+begin
+  FC := Value+ '^_^';
 end;
 
 end.
