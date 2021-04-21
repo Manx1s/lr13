@@ -38,12 +38,12 @@ begin
 A:=100;
 Memo1.lines.add(Inttostr(A));
 B:=300;
-Memo1.Lines.Add(inttostr(B));
+Memo1.Lines.Add(inttostr(B+B));
 end;
 
 function TForm1.GetB: integer;
 begin
-  Result := FB;
+  Result := FB+5;
 end;
 
 procedure TForm1.SetA(const Value: word);
