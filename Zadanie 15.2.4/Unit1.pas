@@ -23,13 +23,16 @@ type
   T3=class(T2)
     public
     procedure test(I:integer);
-    procedure fly;
-    procedure look;
+    procedure fly; virtual;
+    procedure look; override;
   end;
   TForm1 = class(TForm)
     Memo1: TMemo;
     Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -133,6 +136,28 @@ begin
    memo1.Lines.Add('');
    FreeAndNil(T1_);
    FreeAndNil(T2_);
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+type
+TVMT=array[0..100] of pointer;
+GoProc = procedure(obj:T1);
+var
+pVMT:^TVMT;
+pMethod:pointer;
+pObj:pointer;
+i,j,k,sum:integer;
+begin
+     T3_:=T3.Create;
+   pObj:=pointer(T3_);
+   pVMT:=pointer(pObj^);
+   memo1.Lines.Add('pVMT указывает на VMT объекта класса '+ TObject(pObj).ClassName);
+   memo1.Lines.Add('Адрес первого метода в VMT равен '+#9+IntToStr(longword(pVMT^[0])));
+   memo1.Lines.Add('Адрес второго метода в VMT равен '+#9+IntToStr(longword(pVMT^[1])));
+   memo1.Lines.Add('Адрес третьего метода в VMT равен '+#9+IntToStr(longword(pVMT^[2])));
+   memo1.Lines.Add('Адрес четвертого метода в VMT равен'+#9+IntToStr(longword(pVMT^[3])));
+   memo1.Lines.Add('');
+   FreeAndNil(T3_);
 end;
 
 end.
